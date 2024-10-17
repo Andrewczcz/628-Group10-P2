@@ -2,25 +2,6 @@
 
 This repository contains the code, data, and resources for the **Body Fat Prediction Analysis** project as part of STAT628. This project focuses on using various regression techniques to predict body fat percentage based on body measurements. It includes data preprocessing, model comparison, and a Shiny app for interactive prediction.
 
-## Repository Structure
-
-├── code/
-│ ├── bodyfat.r # Main R script for data cleaning, modeling, and diagnostics
-│ ├── app.r # Shiny app code for body fat prediction
-│
-├── data/
-│ ├── BodyFat.csv # Raw body fat dataset
-│ ├── data.csv # Cleaned and preprocessed data
-│ ├── data_new.csv # Further processed data after model fitting
-│
-├── image/
-│ ├── Residual_Plots.png # Residual plots for model diagnostics
-│ ├── QQ_Plots.png # QQ plots for model diagnostics
-│
-├── 628report.pdf # Two-page summary report
-├── STAT628 BODYFAT Project Group10.pdf # Full report
-├── STAT628 BODYFAT Project Group10.pptx # Presentation slides
-
 ### Folders:
 
 - `code/`: Contains the R scripts for data analysis (`bodyfat.r`) and the Shiny app (`app.r`).
@@ -30,11 +11,49 @@ This repository contains the code, data, and resources for the **Body Fat Predic
 - `STAT628 BODYFAT Project Group10.pdf`: The full project report.
 - `STAT628 BODYFAT Project Group10.pptx`: The presentation slides for the project.
 
+## Installation and Usage
+
+### Prerequisites
+
+To run the code or Shiny app, ensure you have R and RStudio installed. You will also need the following R packages:
+- `MASS`
+- `car`
+- `caret`
+- `shiny`
+- `ggplot2`
+
+You can install these packages by running:
+```r
+install.packages(c("MASS", "car", "caret", "shiny", "ggplot2"))
+```
+
+### Running the Analysis
+
+1. **Clone the repository** to your local machine:
+   ```bash
+   git clone https://github.com/Andrewczcz/628-Group10-P2.git
+   ```
+
+2. **Run the analysis**:
+   - Open the `bodyfat.r` file in RStudio.
+   - Run the script to preprocess the data, remove outliers, and build various regression models. This script also generates model comparison and diagnostic plots.
+   - The results will be output to the console.
+
+3. **Model Comparison**: The script evaluates different models and computes metrics such as adjusted R-squared and Mean Squared Error (MSE) using 10-fold cross-validation.
+
 ## Shiny App Deployment
 
-The Shiny app allows users to input body measurements and predict their body fat percentage.
+The Shiny app allows users to input body measurements (abdomen circumference, weight, and age group) and predict their body fat percentage.
 
-https://andrewchanshiny.shinyapps.io/Bodyfat-Group10-P2-628/
+### Running the Shiny App Locally
+
+1. Open the `app.r` file in RStudio.
+2. Click on the "Run App" button, or use the following command to run it in R:
+   ```r
+   shiny::runApp('path_to_app_directory')
+   ```
+
+Or you can click here: https://andrewchanshiny.shinyapps.io/Bodyfat-Group10-P2-628/
 
 #
 
