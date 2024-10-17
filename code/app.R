@@ -87,7 +87,6 @@ ui <- fluidPage(
 # Define server logic
 server <- function(input, output) {
   
-  # 样本均值与标准差
   mu_weight <- 177.69
   sigma_weight <- 26.48
   mu_abdomen <- 92.08
@@ -95,11 +94,9 @@ server <- function(input, output) {
   mu_bodyfat <- 18.94
   sigma_bodyfat <- 7.75
   
-  # 动态预测体脂百分比
   predict_bodyfat <- reactive({
-    req(input$predict) # 等待用户点击“Predict”按钮
+    req(input$predict) 
     
-    # 输入合理性检查
     if (input$weight < 50 || input$weight > 400) {
       return("Error: Please enter a valid weight between 50 and 400 lbs.")
     }
@@ -107,24 +104,21 @@ server <- function(input, output) {
       return("Error: Please enter a valid abdomen circumference between 60 and 150 cm.")
     }
     
-    # 计算体脂百分比
     prediction <- ((1.18 * (input$abdomen - mu_abdomen) / sigma_abdomen) - 
                      (0.42 * (input$weight - mu_weight) / sigma_weight)) * sigma_bodyfat + mu_bodyfat
-    
-    # 预测结果合理性检查
+
     if (prediction < 0 || prediction > 100) {
       return("Error: The predicted body fat is invalid. Please check your input values.")
     }
     
-    return(round(prediction, 2)) # 返回保留两位小数的预测结果
+    return(round(prediction, 2)) 
   })
   
-  # 显示预测结果
+
   output$prediction <- renderText({
     paste(predict_bodyfat(), "%")
   })
-  
-  # 显示体脂百分比参考表格
+
   output$bodyfat_table <- renderTable({
     selected_age_group <- input$age_group
     bodyfat_tables[[selected_age_group]]
@@ -133,5 +127,4 @@ server <- function(input, output) {
   
 }
 
-# 启动应用
 shinyApp(ui = ui, server = server)
