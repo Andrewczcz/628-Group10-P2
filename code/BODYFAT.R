@@ -276,7 +276,7 @@ title("Residual Plots for Different Models", outer = TRUE, cex.main = 1.5)
 dev.off()
 
 #Full model QQ
-png("QQ_Plots.png", width = 1000, height = 1000)  # 指定保存为png，设置尺寸
+png("QQ_Plots.png", width = 1000, height = 1000) 
 par(mfrow = c(4, 2), mar = c(3, 3, 2, 1), oma = c(0, 0, 2, 0))
 for (i in 1:length(models)) {
   qqnorm(residuals(models[[i]]), main = '', col = "blue", pch = 19)
